@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "DEMO_ACCOUNT_TYPE", schema = "KOKETJO")
@@ -15,6 +16,8 @@ public class AccountType implements Serializable {
     private String mnemonic;
     private String accountTypeName;
     private LocalDate creationDate;
+    
+    private Set<AccountTransaction> accountTransactions;
 
     public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
@@ -34,17 +37,9 @@ public class AccountType implements Serializable {
         return accountTypeId;
     }
 
-    public void setAccountTypeId(Long accountTypeId) {
-        this.accountTypeId = accountTypeId;
-    }
-
     @Column(name = "MNEMONIC")
     public String getMnemonic() {
         return mnemonic;
-    }
-
-    public void setMnemonic(String mnemonic) {
-        this.mnemonic = mnemonic;
     }
 
     @Column(name = "ACCOUNT_TYPE_NAME")
@@ -52,13 +47,30 @@ public class AccountType implements Serializable {
         return accountTypeName;
     }
 
-    public void setAccountTypeName(String accountTypeName) {
-        this.accountTypeName = accountTypeName;
-    }
-
     @Column(name = "CREATION_DATE")
     public LocalDate getCreationDate() {
         return creationDate;
+    }
+
+    @OneToMany(targetEntity = AccountTransaction.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public Set<AccountTransaction> getAccountTransactions(){
+        return accountTransactions;
+    }
+
+    public void setAccountTransactions(Set<AccountTransaction> accountTransactions){
+        this.accountTransactions = accountTransactions;
+    }
+
+    public void setAccountTypeId(Long accountTypeId) {
+        this.accountTypeId = accountTypeId;
+    }
+
+    public void setMnemonic(String mnemonic) {
+        this.mnemonic = mnemonic;
+    }
+
+    public void setAccountTypeName(String accountTypeName) {
+        this.accountTypeName = accountTypeName;
     }
 
     public void setCreationDate(LocalDate creationDate) {
