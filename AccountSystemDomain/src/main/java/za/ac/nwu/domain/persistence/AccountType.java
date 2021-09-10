@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "DEMO_ACCOUNT_TYPE", schema = "KOKETJO")
 public class AccountType implements Serializable {
 
-    private static final long serialVersionUID = 3833625316797154577L;
+    private static final long serialVersionUID = -2282337104058330818L;
 
     private Long accountTypeId;
     private String mnemonic;
@@ -19,6 +19,9 @@ public class AccountType implements Serializable {
     
     private Set<AccountTransaction> accountTransactions;
 
+    public AccountType() {
+    }
+
     public AccountType(Long accountTypeId, String mnemonic, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
         this.mnemonic = mnemonic;
@@ -26,7 +29,10 @@ public class AccountType implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public AccountType() {
+    public AccountType(String mnemonic, String accountTypeName, LocalDate creationDate) {
+        this.mnemonic = mnemonic;
+        this.accountTypeName = accountTypeName;
+        this.creationDate = creationDate;
     }
 
     @Id
