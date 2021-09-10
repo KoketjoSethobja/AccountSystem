@@ -13,14 +13,16 @@
     <artifactId>AccountSystemTranslator</artifactId>
     <packaging>jar</packaging>
 
+<!-- 3. -->
     <dependencies>
+<!--        domain is provided here-->
         <dependency>
             <groupId>za.ac.nwu</groupId>
             <artifactId>AccountSystemDomain</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
-
+<!-- will be avalaible when you compile-->
         <dependency>
             <groupId>za.ac.nwu</groupId>
             <artifactId>AccountSystemRepository</artifactId>

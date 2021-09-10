@@ -13,4 +13,21 @@
     <artifactId>AccountSystemLogic</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
+<!--        provided-->
+        <dependency>
+            <groupId>za.ac.nwu</groupId>
+            <artifactId>AccountSystemDomain</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+<!--        compile-->
+        <dependency>
+            <groupId>za.ac.nwu</groupId>
+            <artifactId>AccountSystemTranslator</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
 </project>

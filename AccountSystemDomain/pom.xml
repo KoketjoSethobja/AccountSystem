@@ -9,24 +9,17 @@
         <artifactId>AccountSystem</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
+<!-- 2. classes carry database entities-->
     <artifactId>AccountSystemDomain</artifactId>
     <packaging>jar</packaging>
 
+<!-- 1.   provided by spring boot-->
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-context</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--        </dependency>-->
     </dependencies>
 
 </project>
