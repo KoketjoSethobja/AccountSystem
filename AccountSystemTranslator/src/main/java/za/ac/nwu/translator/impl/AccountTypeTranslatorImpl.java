@@ -32,6 +32,7 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
                 accountTypeDtos.add(new AccountTypeDto(accountType));
             }
         } catch (Exception e) {
+            //TODO: Log
             throw new RuntimeException("Unable to read from the DB", e);
         }
 
