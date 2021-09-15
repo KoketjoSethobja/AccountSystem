@@ -11,6 +11,4 @@ import za.ac.nwu.translator.config.TranslatorConfig;
         "za.ac.nwu.logic.flow"
 })
 public class LogicConfig {
-
-
 }

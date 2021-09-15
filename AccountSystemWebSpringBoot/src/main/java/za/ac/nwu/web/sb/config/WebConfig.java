@@ -11,9 +11,7 @@ import za.ac.nwu.logic.config.LogicConfig;
         "za.ac.nwu.web.sb.controller",
         "za.ac.nwu.web.sb.exception"
 })
-
 public class WebConfig {
-
 }
 
 

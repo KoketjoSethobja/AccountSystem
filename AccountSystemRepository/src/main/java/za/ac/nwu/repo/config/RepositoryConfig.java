@@ -12,5 +12,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan("za.ac.nwu.domain.persistence") //4. scan for the entities
 @PropertySource(value = "classpath:application-db.properties")
 public class RepositoryConfig {
-
 }
