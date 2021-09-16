@@ -24,7 +24,7 @@ public class ModuloTest {
     @Test()
     public void testModBy0(){
         try{
-            Integer result = mod.doMod(9, 0);
+            mod.doMod(9, 0);
             fail("Should throw an exception");
         } catch (Exception e) {
             assertTrue("Error message not as expected", e.getMessage().equalsIgnoreCase("Some Reason"));

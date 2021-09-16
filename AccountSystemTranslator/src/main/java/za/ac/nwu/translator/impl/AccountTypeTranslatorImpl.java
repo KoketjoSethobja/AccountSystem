@@ -78,4 +78,9 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
             throw new RuntimeException("Unable to read from the DB", e);
         }
     }
+
+    @Override
+    public void someMethod() {
+
+    }
 }
