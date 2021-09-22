@@ -10,7 +10,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import za.ac.nwu.domain.dto.AccountTypeDto;
 import za.ac.nwu.translator.AccountTypeTranslator;
 
-import static org.junit.Assert.fail;
+import java.time.LocalDate;
+
+import static org.junit.Assert.*;
+import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.Mockito.*;
 
 
@@ -23,33 +26,20 @@ public class CreateAccountTypeFlowImplTest {
     @InjectMocks
     private CreateAccountTypeFlowImpl flow;
 
-    //mocked the translator
     @Before
     public void setUp() throws Exception {
-        newMethod();
     }
 
     @After
     public void tearDown() throws Exception {
-        newMethod();
     }
-
 
     @Test
     public void create() {
-        doThrow(new RuntimeException()).when(translator).someMethod();
-        newMethod();
-        verify(translator, times(1)).someMethod();
-        verify(translator, never()).create(any(AccountTypeDto.class));
-
-    }
-
-    private void newMethod() {
-        try {
-            flow.create(new AccountTypeDto());
-            fail("Should throw an exception");
-        } catch (Exception e) {
-
-        }
+        when(translator.create(any(AccountTypeDto.class))).then(returnsFirstArg());
+        AccountTypeDto result = flow.create(new AccountTypeDto());
+        assertNotNull(result);
+        assertEquals(LocalDate.now(), result.getCreationDate());
+        verify(translator, times(1)).create(any(AccountTypeDto.class));
     }
 }
