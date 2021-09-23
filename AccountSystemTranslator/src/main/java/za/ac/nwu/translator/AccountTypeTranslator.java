@@ -1,6 +1,7 @@
 package za.ac.nwu.translator;
 
 import za.ac.nwu.domain.dto.AccountTypeDto;
+import za.ac.nwu.domain.persistence.AccountType;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ public interface AccountTypeTranslator {
 
     AccountTypeDto create(AccountTypeDto accountType);
 
-/*    AccountTypeDto save(AccountType accountType);*/
+    AccountTypeDto save(AccountType accountType);
 
     AccountTypeDto getAccountTypesByMnemonicNativeQuery(String mnemonic);
 

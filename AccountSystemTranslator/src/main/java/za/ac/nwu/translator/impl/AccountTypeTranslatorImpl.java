@@ -8,7 +8,6 @@ import za.ac.nwu.domain.persistence.AccountType;
 import za.ac.nwu.repo.persistence.AccountTypeRepository;
 import za.ac.nwu.translator.AccountTypeTranslator;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +45,15 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
         try {
             AccountType accountType = accountTypeRepository.save(accountTypeDto.getAccountType());
             return new AccountTypeDto(accountType);
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to save to the DB", e);
+        }
+    }
+
+    @Override
+    public AccountTypeDto save(AccountType accountType){
+        try{
+            return new AccountTypeDto(accountTypeRepository.save(accountType));
         } catch (Exception e) {
             throw new RuntimeException("Unable to save to the DB", e);
         }
