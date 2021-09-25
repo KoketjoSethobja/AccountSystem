@@ -8,6 +8,7 @@ import za.ac.nwu.domain.persistence.AccountType;
 import za.ac.nwu.repo.persistence.AccountTypeRepository;
 import za.ac.nwu.translator.AccountTypeTranslator;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,6 +87,16 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
         }catch (Exception e) {
             throw new RuntimeException("Unable to read from the DB", e);
         }
+    }
+
+    @Override
+    public AccountTypeDto updateAccountType(String mnemonic, String newAccountTypeName, LocalDate newCreationDate) {
+        return null;
+    }
+
+    @Override
+    public AccountTypeDto deleteAccountType(String mnemonic) {
+        return null;
     }
 
     @Override
