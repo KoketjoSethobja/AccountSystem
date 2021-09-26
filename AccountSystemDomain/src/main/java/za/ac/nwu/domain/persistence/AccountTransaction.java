@@ -6,16 +6,17 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TYPE", schema = "KOKETJO")
+@Table(name = "DEMO_ACCOUNT_TX", schema = "KOKETJO")
 public class AccountTransaction implements Serializable {
 
     private static final long serialVersionUID = -1420294317019175746L;
 
     private Long transactionId;
-    private AccountType accountType; //for the foreign key
     private Long memberId;
     private Long amount;
     private LocalDate transactionDate;
+    private AccountType accountType; //for the foreign key
+    private AccountTransactionDetails details;
 
     public AccountTransaction() {
     }
@@ -36,13 +37,6 @@ public class AccountTransaction implements Serializable {
         return transactionId;
     }
 
-    //    foreign keys
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_TYPE_ID")
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
     @Column(name = "MEMBER_ID")
     public Long getMemberId() {
         return memberId;
@@ -58,12 +52,20 @@ public class AccountTransaction implements Serializable {
         return transactionDate;
     }
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
+    //    foreign keys
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_TYPE_ID")
+    public AccountType getAccountType() {
+        return accountType;
     }
 
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
+    @OneToOne(targetEntity = AccountTransactionDetails.class, fetch = FetchType.LAZY, mappedBy = "accountTransaction"/*, orphanRemoval = true, cascade = CascadeType.PERSIST*/)
+    public AccountTransactionDetails getDetails() {
+        return details;
+    }
+
+    public void setTransactionId(Long transactionId) {
+        this.transactionId = transactionId;
     }
 
     public void setMemberId(Long memberId) {
@@ -76,6 +78,14 @@ public class AccountTransaction implements Serializable {
 
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    public void setDetails(AccountTransactionDetails details) {
+        this.details = details;
     }
 
     @Override

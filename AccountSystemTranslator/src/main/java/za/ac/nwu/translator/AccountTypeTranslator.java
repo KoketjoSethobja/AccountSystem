@@ -26,7 +26,7 @@ public interface AccountTypeTranslator {
 
     void someMethod();
 
-
+    AccountType getAccountTypeDbEntityByMnemonic(String mnemonic);
 
 /*    AccountType getAccountTypeDbEntityByMnemonic(String mnemonic);
 

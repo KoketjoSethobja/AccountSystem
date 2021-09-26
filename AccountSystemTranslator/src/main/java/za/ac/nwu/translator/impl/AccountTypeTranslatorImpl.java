@@ -103,4 +103,13 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
     public void someMethod() {
 
     }
+
+    @Override
+    public AccountType getAccountTypeDbEntityByMnemonic(String mnemonic) {
+        try{
+            return accountTypeRepository.getAccountTypeDbEntityByMnemonic(mnemonic);
+        }catch (Exception e) {
+            throw new RuntimeException("Unable to read from the DB", e);
+        }
+    }
 }

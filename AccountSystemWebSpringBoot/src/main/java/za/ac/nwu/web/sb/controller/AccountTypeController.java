@@ -120,9 +120,10 @@ public class AccountTypeController {
                     example = "MILES",
                     name = "mnemonic",
                     required = true)
-            @PathVariable("mnemonic") final String mnemonic,
+            /*@PathVariable("mnemonic") final String mnemonic,*/
+            @RequestParam("mnemonic") final String mnemonic,
 
-            @ApiParam(value = "The new AccountTypeNmae that specifies AccountType should be updated with.",
+            @ApiParam(value = "The new AccountTypeName that specifies AccountType should be updated with.",
                     name = "newAccountTypeName",
                     required = true)
             @RequestParam("newAccountTypeName") final String newAccountTypeName,
