@@ -37,8 +37,8 @@ public class AccountTypeRepositoryTest {
     @Test
     public void getAccountTypeByMnemonicNativeQueryMiles() {
         AccountType miles = accountTypeRepository.getAccountTypeByMnemonicNativeQuery("MILES");
-        assertNull(miles);/*
-        assertEquals("MILES", miles.getMnemonic());*/
+        assertNotNull(miles);
+        assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
@@ -50,15 +50,15 @@ public class AccountTypeRepositoryTest {
     @Test
     public void getAccountTypeByMnemonicMiles() {
         AccountType miles = accountTypeRepository.getAccountTypeByMnemonic("MILES");
-        assertNull(miles);/*
-        assertEquals("MILES", miles.getMnemonic());*/
+        assertNotNull(miles);
+        assertEquals("MILES", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeByMnemonicPlay() {
         AccountType miles = accountTypeRepository.getAccountTypeByMnemonic("PLAY");
-        assertNull(miles);/*
-        assertEquals("PLAY", miles.getMnemonic());*/
+        assertNotNull(miles);
+        assertEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
@@ -70,15 +70,15 @@ public class AccountTypeRepositoryTest {
     @Test
     public void getAccountTypeDtoByMnemonicMiles() {
         AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("MILES");
-        assertNull(miles);/*
-        assertEquals("PLAY", miles.getMnemonic());*/
+        assertNotNull(miles);
+        assertNotEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
     public void getAccountTypeDtoByMnemonicPlay() {
         AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("PLAY");
-        assertNull(miles);/*
-        assertEquals("PLAY", miles.getMnemonic());*/
+        assertNotNull(miles);
+        assertEquals("PLAY", miles.getMnemonic());
     }
 
     @Test
@@ -86,4 +86,5 @@ public class AccountTypeRepositoryTest {
         AccountTypeDto miles = accountTypeRepository.getAccountTypeDtoByMnemonic("R");
         assertNull(miles);
     }
+
 }

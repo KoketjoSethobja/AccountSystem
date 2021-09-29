@@ -12,6 +12,7 @@ import za.ac.nwu.domain.dto.AccountTransactionDto;
 import za.ac.nwu.domain.service.GeneralResponse;
 import za.ac.nwu.logic.flow.CreateAccountTransactionFlow;
 import za.ac.nwu.logic.flow.FetchAccountTransactionFlow;
+import za.ac.nwu.repo.persistence.AccountTransactionRepository;
 
 import java.util.List;
 
@@ -21,12 +22,14 @@ public class AccountTransactionController {
 
     private final CreateAccountTransactionFlow createAccountTransactionFlow;
     private final FetchAccountTransactionFlow fetchAccountTransactionFlow;
+    private final AccountTransactionRepository repo;
 
     @Autowired
     public AccountTransactionController(CreateAccountTransactionFlow createAccountTransactionFlow,
-                                        FetchAccountTransactionFlow fetchAccountTransactionFlow) {
+                                        FetchAccountTransactionFlow fetchAccountTransactionFlow, AccountTransactionRepository repo) {
         this.createAccountTransactionFlow = createAccountTransactionFlow;
         this.fetchAccountTransactionFlow = fetchAccountTransactionFlow;
+        this.repo = repo;
     }
 
     @PostMapping("")
@@ -58,7 +61,7 @@ public class AccountTransactionController {
     }
 
     @GetMapping("/{transactionId}")
-    @ApiOperation(value = "Fethces the specified AccountTransaction.", notes = "Fetches the AccountTransaction corresponding to the given transactionId")
+    @ApiOperation(value = "Fetches the specified AccountTransaction.", notes = "Fetches the AccountTransaction corresponding to the given transactionId")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "AccountTransaction Found", response = GeneralResponse.class),
             @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
@@ -75,4 +78,55 @@ public class AccountTransactionController {
         GeneralResponse<AccountTransactionDto> response = new GeneralResponse<>(true, AccountTransaction);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping("/addAmount/{addAmount}")
+    @ApiOperation(value = "Add miles to specified account transaction.", notes = "Updates the AccountTransaction corresponding to the given memberId.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "AccountTransaction Updated"),
+            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Resource not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),
+    })
+    public ResponseEntity<GeneralResponse<Integer>> addMilesToMilesAccount(
+            @ApiParam(value = "Amount to be added",
+                    example = "300",
+                    name = "addAmount",
+                    required = true)
+            @PathVariable("addAmount") final Long addAmount,
+
+            @ApiParam(value = "The memberId.",
+                    name = "memberId",
+                    required = true)
+            @RequestParam("memberId") final Long memberId
+    ){
+        Integer accountTransaction = repo.addMilesToMilesAccount(addAmount, memberId);
+        GeneralResponse<Integer> response = new GeneralResponse<>(true, accountTransaction);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/subAmount/{subAmount}")
+    @ApiOperation(value = "subtract miles from specified account transaction.", notes = "Updates the AccountTransaction corresponding to the given memberId.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "AccountTransaction Updated"),
+            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Resource not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),
+    })
+    public ResponseEntity<GeneralResponse<Integer>> subtractMilesFromMilesAccount(
+            @ApiParam(value = "Amount to be subtracted",
+                    example = "300",
+                    name = "subAmount",
+                    required = true)
+            @PathVariable("subAmount") final Long subAmount,
+
+            @ApiParam(value = "The memberId.",
+                    name = "memberId",
+                    required = true)
+            @RequestParam("memberId") final Long memberId
+    ){
+        Integer accountTransaction = repo.subtractMilesFromMilesAccount(subAmount, memberId);
+        GeneralResponse<Integer> response = new GeneralResponse<>(true, accountTransaction);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

@@ -15,7 +15,7 @@ public interface AccountTypeRepository extends JpaRepository<AccountType, Long> 
             " CREATION_DATE," +
             " MNEMONIC" +
             " FROM " +
-            " KOKETJO.DEMO_ACCOUNT_TYPE" +
+            " KOKETJO.ACCOUNT_TYPE" +
             " WHERE MNEMONIC = :mnemonic ", nativeQuery = true)
     AccountType getAccountTypeByMnemonicNativeQuery(String mnemonic);
 
@@ -41,27 +41,4 @@ public interface AccountTypeRepository extends JpaRepository<AccountType, Long> 
             "AccountType at "+
             "WHERE at.mnemonic = :mnemonic")
     AccountType getAccountTypeDbEntityByMnemonic(String mnemonic);
-
-/*    @Query(value = "DELETE FROM "+
-            "AccountType at "+
-            "WHERE at.mnemonic = :mnemonic")
-    AccountTypeDto deleteAccountType(String mnemonic);
-
-    @Query(value = "UPDATE AccountType at "+
-            "SET at.accountTypeName = :newAccountTypeName, " +
-            "at.creationDate = :newCreationDate " +
-            "WHERE at.mnemonic = :mnemonic")
-    AccountTypeDto updateAccountType(String mnemonic, String newAccountTypeName, LocalDate newCreationDate);*/
-    /*@Query(value = "DELETE FROM " +
-            "KOKETJO.DEMO_ACCOUNT_TYPE " +
-            "WHERE MNEMONIC = :mnemonic", nativeQuery = true)
-    AccountTypeDto deleteAccountType(String mnemonic);*/
-
-    /*@Query(value = "UPDATE KOKETJO.DEMO_ACCOUNT_TYPE "+
-            "SET "+
-            "ACCOUNT_TYPE_NAME = :newAccountTypeName, "+
-            "CREATION_DATE = :newCreationDate " +
-            "WHERE "+
-            "MNEMONIC = :mnemonic", nativeQuery = true)
-    AccountTypeDto updateAccountType(String mnemonic, String newAccountTypeName, LocalDate newCreationDate);*/
 }

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "DEMO_ACCOUNT_TX_DETAILS", schema = "KOKETJO")
+@Table(name = "ACCOUNT_TX_DETAILS", schema = "KOKETJO")
 public class AccountTransactionDetails implements Serializable {
 
     private static final long serialVersionUID = -4662591714240204118L;
