@@ -79,6 +79,25 @@ public class AccountTransactionController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/memberId/{memberId}")
+    @ApiOperation(value = "Views the specified Currency for member.", notes = "Views the Currency corresponding to the given memberId")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Currency Found", response = GeneralResponse.class),
+            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
+            @ApiResponse(code = 404, message = "Not found", response = GeneralResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),
+    })
+    public ResponseEntity<GeneralResponse<AccountTransactionDto>> viewMilesForMember(
+            @ApiParam(value = "The memberId that uniquely identifies the Currency.",
+                    example = "1234567",
+                    name = "memberId",
+                    required = true)
+            @PathVariable("memberId") final Long memberId) {
+        AccountTransactionDto AccountTransaction = fetchAccountTransactionFlow.viewMilesForMember(memberId);
+        GeneralResponse<AccountTransactionDto> response = new GeneralResponse<>(true, AccountTransaction);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping("/addAmount/{addAmount}")
     @ApiOperation(value = "Add miles to specified account transaction.", notes = "Updates the AccountTransaction corresponding to the given memberId.")
     @ApiResponses(value = {
@@ -129,24 +148,7 @@ public class AccountTransactionController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/memberId/{memberId}")
-    @ApiOperation(value = "Views the specified Currency for member.", notes = "Views the Currency corresponding to the given memberId")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Currency Found", response = GeneralResponse.class),
-            @ApiResponse(code = 400, message = "Bad Request", response = GeneralResponse.class),
-            @ApiResponse(code = 404, message = "Not found", response = GeneralResponse.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = GeneralResponse.class),
-    })
-    public ResponseEntity<GeneralResponse<AccountTransactionDto>> viewMilesForMember(
-            @ApiParam(value = "The memberId that uniquely identifies the Currency.",
-                    example = "1234567",
-                    name = "memberId",
-                    required = true)
-            @PathVariable("memberId") final Long memberId) {
-        AccountTransactionDto AccountTransaction = fetchAccountTransactionFlow.viewMilesForMember(memberId);
-        GeneralResponse<AccountTransactionDto> response = new GeneralResponse<>(true, AccountTransaction);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+
 
 
 }

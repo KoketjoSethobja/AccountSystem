@@ -23,15 +23,4 @@ public interface AccountTransactionRepository extends JpaRepository<AccountTrans
             "WHERE at.memberId = :memberId")
     Integer subtractMilesFromMilesAccount(Long amount, Long memberId);
 
-/*    @Query(value = "SELECT "+
-            "at.transactionId, "+
-            "at.memberId, "+
-            "at.amount, "+
-            "at.transactionDate, "+
-            "at.accountType, "+
-            "at.details "+
-            "FROM "+
-            "AccountTransaction at "+
-            "WHERE at.memberId = :memberId")
-    AccountTransaction viewMilesForMember(Long memberId);*/
 }

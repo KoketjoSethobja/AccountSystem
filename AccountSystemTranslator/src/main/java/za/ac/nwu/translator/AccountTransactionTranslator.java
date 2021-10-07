@@ -11,4 +11,6 @@ public interface AccountTransactionTranslator {
     List<AccountTransaction> getAllAccountTransactions();
 
     AccountTransaction getAccountTransactionByPk(Long transactionId);
+
+    AccountTransaction viewMilesForMember(Long memberId);
 }

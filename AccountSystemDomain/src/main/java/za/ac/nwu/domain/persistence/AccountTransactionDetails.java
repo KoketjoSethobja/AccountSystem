@@ -60,8 +60,8 @@ public class AccountTransactionDetails implements Serializable {
         this.accountTransaction = accountTransaction;
     }
 
-    public void setPartnerName(String parterName) {
-        this.partnerName = parterName;
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
     }
 
     public void setNumberOfItems(Long numberOfItems) {
